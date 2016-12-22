@@ -1,6 +1,6 @@
 {
   "name": "expired",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Calculate when HTTP cache headers expire",
   "main": "src/index.js",
   "scripts": {
