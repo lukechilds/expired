@@ -1,7 +1,10 @@
 const isPast = require('date-fns/is_past');
+const differenceInMilliseconds = require('date-fns/difference_in_milliseconds');
 const addSeconds = require('date-fns/add_seconds');
 
 const expired = headers => isPast(expired.on(headers));
+
+expired.in = headers => differenceInMilliseconds(expired.on(headers), new Date());
 
 expired.on = headers => {
 	const originDate = new Date(headers.date);
