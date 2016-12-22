@@ -1,6 +1,10 @@
+const isPast = require('date-fns/is_past');
 const addSeconds = require('date-fns/add_seconds');
 
-function expired() {}
+function expired(headers) {
+  const expireDate = expired.on(headers)
+  return isPast(expireDate);
+}
 
 expired.on = headers => {
 	const originDate = new Date(headers.date);
