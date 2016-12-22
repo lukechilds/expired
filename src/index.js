@@ -1,6 +1,8 @@
 const addSeconds = require('date-fns/add_seconds');
 
-function expired(headers) {
+function expired() {}
+
+expired.on = headers => {
 	const originDate = new Date(headers.date);
 
   // Get max age ms
@@ -14,6 +16,6 @@ function expired(headers) {
 
   // Calculate expirey date
 	return addSeconds(new Date(originDate), maxAge);
-}
+};
 
 module.exports = expired;
