@@ -35,3 +35,19 @@ test('expired.on returns correct expirey date for instantly stale cache', t => {
 	t.true(isEqual(expired.on(headers), date));
 	tk.reset();
 });
+
+test('expired.on returns correct expirey date for stale cache', t => {
+	const date = new Date().toUTCString();
+	const dateOffset = -600;
+	const maxAge = 300;
+	const headers = {
+		date: addSeconds(date, dateOffset).toUTCString(),
+		age: 0,
+		'cache-control': `public, max-age=${maxAge}`
+	};
+	const expiredOn = addSeconds(date, (maxAge + dateOffset));
+
+	tk.freeze(date);
+	t.true(isEqual(expired.on(headers), expiredOn));
+	tk.reset();
+});
