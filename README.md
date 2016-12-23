@@ -43,6 +43,9 @@ expired.on(headers)
 
 delay(600000).then(() => {
 
+  new Date()
+  // Date('2016-12-23T05:56:31.000Z')
+
   expired(headers)
   // true
 
