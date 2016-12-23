@@ -12,6 +12,66 @@
 npm install --save expired
 ```
 
+## Usage
+
+```js
+const expired = require('expired');
+
+const headers = {
+  'access-control-allow-origin': '*',
+  'age': '0',
+  'cache-control': 'public, max-age=300',
+  'content-encoding': 'gzip',
+  'content-type': 'application/json;charset=utf-8',
+  'date': 'Fri, 23 Dec 2016 05:54:31 GMT',
+  'last-modified': 'Fri, 23 Dec 2016 05:23:23 GMT',
+  'vary': 'Accept-Encoding, User-Agent',
+  'via': '1.1 varnish-v4'
+};
+
+expired(headers)
+// false
+
+expired.in(headers)
+// 300000
+
+expired.on(headers)
+// Date('2016-12-23T05:59:31.000Z')
+
+delay(500000).then(() => {
+
+  expired(headers)
+  // true
+
+  expired.in(headers)
+  // -200000
+
+  expired.on(headers)
+  // Date('2016-12-23T05:59:31.000Z')
+
+});
+```
+
+You can also pass headers in as raw text:
+
+```js
+const expired = require('expired');
+
+const headers = `
+Access-Control-Allow-Origin: *
+Age: 0
+Cache-Control: public, max-age=300
+Content-Encoding: gzip
+Content-Type: application/json;charset=utf-8
+Date: Fri, 23 Dec 2016 05:54:31 GMT
+Last-Modified: Fri, 23 Dec 2016 05:23:23 GMT
+Vary: Accept-Encoding, User-Agent
+Via: 1.1 varnish-v4`;
+
+expired(headers)
+// false
+```
+
 ## License
 
 MIT © Luke Childs
