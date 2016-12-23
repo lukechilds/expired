@@ -29,6 +29,9 @@ const headers = {
   'via': '1.1 varnish-v4'
 };
 
+new Date()
+// Date('2016-12-23T05:54:31.000Z')
+
 expired(headers)
 // false
 
