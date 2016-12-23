@@ -1,6 +1,24 @@
 import test from 'ava';
+import tk from 'timekeeper';
+import addSeconds from 'date-fns/add_seconds';
+import isEqual from 'date-fns/is_equal';
 import expired from '../';
 
 test('expired.on is a function', t => {
 	t.is(typeof expired.in, 'function');
+});
+
+test('expired.on returns correct expirey date for valid cache', t => {
+	const date = new Date().toUTCString();
+	const maxAge = 300;
+	const headers = {
+		date: date,
+		age: 0,
+		'cache-control': `public, max-age=${maxAge}`
+	};
+	const expiredOn = addSeconds(date, maxAge);
+
+	tk.freeze(date);
+	t.true(isEqual(expired.on(headers), expiredOn));
+	tk.reset();
 });
