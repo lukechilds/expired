@@ -1,5 +1,6 @@
 import test from 'ava';
 import tk from 'timekeeper';
+import subSeconds from 'date-fns/sub_seconds';
 import expired from '../';
 
 test('expired.in is a function', t => {
@@ -30,5 +31,20 @@ test('expired.in returns zero ms for instantly stale cache', t => {
 
 	tk.freeze(date);
 	t.is(expired.in(headers), 0);
+	tk.reset();
+});
+
+test('expired.in returns negative ms for stale cache', t => {
+	const date = new Date().toUTCString();
+	const dateOffset = 600;
+	const maxAge = 300;
+	const headers = {
+		date: subSeconds(date, dateOffset).toUTCString(),
+		age: 0,
+		'cache-control': `public, max-age=${maxAge}`
+	};
+
+	tk.freeze(date);
+	t.is(expired.in(headers), (maxAge - dateOffset) * 1000);
 	tk.reset();
 });
