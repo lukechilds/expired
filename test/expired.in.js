@@ -15,9 +15,10 @@ test('expired.in returns positive ms for valid cache', t => {
 		age: 0,
 		'cache-control': `public, max-age=${maxAge}`
 	};
+	const expiredIn = maxAge * 1000;
 
 	tk.freeze(date);
-	t.is(expired.in(headers), maxAge * 1000);
+	t.is(expired.in(headers), expiredIn);
 	tk.reset();
 });
 
@@ -28,9 +29,10 @@ test('expired.in returns zero ms for instantly stale cache', t => {
 		age: 0,
 		'cache-control': `public, max-age=0`
 	};
+	const expiredIn = 0;
 
 	tk.freeze(date);
-	t.is(expired.in(headers), 0);
+	t.is(expired.in(headers), expiredIn);
 	tk.reset();
 });
 
@@ -43,8 +45,9 @@ test('expired.in returns negative ms for stale cache', t => {
 		age: 0,
 		'cache-control': `public, max-age=${maxAge}`
 	};
+	const expiredIn = (maxAge - dateOffset) * 1000;
 
 	tk.freeze(date);
-	t.is(expired.in(headers), (maxAge - dateOffset) * 1000);
+	t.is(expired.in(headers), expiredIn);
 	tk.reset();
 });
