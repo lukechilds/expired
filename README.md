@@ -23,34 +23,34 @@ const headers = {
   'cache-control': 'public, max-age=300',
   'content-encoding': 'gzip',
   'content-type': 'application/json;charset=utf-8',
-  'date': 'Fri, 23 Dec 2016 05:54:31 GMT',
+  'date': 'Fri, 23 Dec 2016 05:50:31 GMT',
   'last-modified': 'Fri, 23 Dec 2016 05:23:23 GMT',
   'vary': 'Accept-Encoding, User-Agent',
   'via': '1.1 varnish-v4'
 };
 
 new Date()
-// Date('2016-12-23T05:54:31.000Z')
+// Date('2016-12-23T05:50:31.000Z')
 
 expired(headers)
 // false
 
 expired.in(headers)
-// 300000
+// 500000
 
 expired.on(headers)
-// Date('2016-12-23T05:59:31.000Z')
+// Date('2016-12-23T05:55:31.000Z')
 
-delay(500000).then(() => {
+delay(600000).then(() => {
 
   expired(headers)
   // true
 
   expired.in(headers)
-  // -200000
+  // -100000
 
   expired.on(headers)
-  // Date('2016-12-23T05:59:31.000Z')
+  // Date('2016-12-23T05:55:31.000Z')
 
 });
 ```
@@ -66,7 +66,7 @@ Age: 0
 Cache-Control: public, max-age=300
 Content-Encoding: gzip
 Content-Type: application/json;charset=utf-8
-Date: Fri, 23 Dec 2016 05:54:31 GMT
+Date: Fri, 23 Dec 2016 05:50:31 GMT
 Last-Modified: Fri, 23 Dec 2016 05:23:23 GMT
 Vary: Accept-Encoding, User-Agent
 Via: 1.1 varnish-v4`;
