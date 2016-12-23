@@ -22,7 +22,7 @@ expired.on = headers => {
 	}
 
 	// Calculate expirey date
-	return addSeconds(new Date(originDate), maxAge);
+	return addSeconds(originDate, maxAge);
 };
 
 module.exports = expired;
