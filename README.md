@@ -6,6 +6,12 @@
 
 `expired` accepts HTTP headers as an argument and will return information on when the resource will expire.
 
+## Install
+
+```shell
+npm install --save expired
+```
+
 ## License
 
 MIT © Luke Childs
