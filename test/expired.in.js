@@ -19,3 +19,16 @@ test('expired.in returns positive ms for valid cache', t => {
 	t.is(expired.in(headers), maxAge * 1000);
 	tk.reset();
 });
+
+test('expired.in returns zero ms for instantly stale cache', t => {
+	const date = new Date().toUTCString();
+	const headers = {
+		date: date,
+		age: 0,
+		'cache-control': `public, max-age=0`
+	};
+
+	tk.freeze(date);
+	t.is(expired.in(headers), 0);
+	tk.reset();
+});
