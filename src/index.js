@@ -1,12 +1,15 @@
 const isPast = require('date-fns/is_past');
 const differenceInMilliseconds = require('date-fns/difference_in_milliseconds');
 const addSeconds = require('date-fns/add_seconds');
+const parse = require('parse-headers');
 
 const expired = headers => isPast(expired.on(headers));
 
 expired.in = headers => differenceInMilliseconds(expired.on(headers), new Date());
 
 expired.on = headers => {
+	headers = (typeof headers === 'string') ? parse(headers) : headers;
+
 	const originDate = new Date(headers.date);
 
 	// Get max age ms

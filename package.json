@@ -27,7 +27,8 @@
   },
   "homepage": "https://github.com/lukechilds/expired",
   "dependencies": {
-    "date-fns": "^1.21.1"
+    "date-fns": "^1.21.1",
+    "parse-headers": "^2.0.1"
   },
   "devDependencies": {
     "ava": "^0.17.0",
