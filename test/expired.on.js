@@ -22,3 +22,16 @@ test('expired.on returns correct expirey date for valid cache', t => {
 	t.true(isEqual(expired.on(headers), expiredOn));
 	tk.reset();
 });
+
+test('expired.on returns correct expirey date for instantly stale cache', t => {
+	const date = new Date().toUTCString();
+	const headers = {
+		date: date,
+		age: 0,
+		'cache-control': `public, max-age=0`
+	};
+
+	tk.freeze(date);
+	t.true(isEqual(expired.on(headers), date));
+	tk.reset();
+});
