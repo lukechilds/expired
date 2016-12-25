@@ -29,9 +29,6 @@ const headers = {
   'via': '1.1 varnish-v4'
 };
 
-new Date()
-// Date('2016-12-23T05:50:31.000Z')
-
 expired(headers)
 // false
 
@@ -42,9 +39,6 @@ expired.on(headers)
 // Date('2016-12-23T05:55:31.000Z')
 
 delay(600000).then(() => {
-
-  new Date()
-  // Date('2016-12-23T05:56:31.000Z')
 
   expired(headers)
   // true
