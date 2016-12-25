@@ -80,7 +80,7 @@ Returns a boolean relating to whether the resource has expired or not. `true` me
 
 #### expired.in(headers)
 
-Returns the amount of milliseconds until the resource will expire. If the resource has already expired it will return a negative integer.
+Returns the amount of milliseconds from the current date until the resource will expire. If the resource has already expired it will return a negative integer.
 
 #### expired.on(headers)
 
