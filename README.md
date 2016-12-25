@@ -72,17 +72,17 @@ expired(headers)
 // false
 ```
 
-### API
+## API
 
-#### expired(headers)
+### expired(headers)
 
 Returns a boolean relating to whether the resource has expired or not. `true` means it's expired, `false` means it's fresh.
 
-#### expired.in(headers)
+### expired.in(headers)
 
 Returns the amount of milliseconds from the current date until the resource will expire. If the resource has already expired it will return a negative integer.
 
-#### expired.on(headers)
+### expired.on(headers)
 
 Returns a JavaScript `Date` object for the date the resource will expire.
 
