@@ -62,7 +62,7 @@ test('expired.on takes age into account', t => {
 test('expired.on uses Expires header', t => {
 	const date = new Date().toUTCString();
 	const headers = {
-		date: date,
+		date: addSeconds(date, 300),
 		expires: date
 	};
 
