@@ -32,6 +32,10 @@ expired.on = headers => {
 
 		// Calculate expirey date
 		expiredOn = addSeconds(originDate, maxAge);
+
+	// Fall back to Expires if it exists
+	} else if (headers.expires) {
+		expiredOn = new Date(headers.expires);
 	}
 
 	// Return expirey date
