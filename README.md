@@ -17,17 +17,16 @@ npm install --save expired
 ```js
 const expired = require('expired');
 
-const headers = {
-  'access-control-allow-origin': '*',
-  'age': '0',
-  'cache-control': 'public, max-age=300',
-  'content-encoding': 'gzip',
-  'content-type': 'application/json;charset=utf-8',
-  'date': 'Fri, 23 Dec 2016 05:50:31 GMT',
-  'last-modified': 'Fri, 23 Dec 2016 05:23:23 GMT',
-  'vary': 'Accept-Encoding, User-Agent',
-  'via': '1.1 varnish-v4'
-};
+const headers = `
+Access-Control-Allow-Origin: *
+Age: 0
+Cache-Control: public, max-age=300
+Content-Encoding: gzip
+Content-Type: application/json;charset=utf-8
+Date: Fri, 23 Dec 2016 05:50:31 GMT
+Last-Modified: Fri, 23 Dec 2016 05:23:23 GMT
+Vary: Accept-Encoding, User-Agent
+Via: 1.1 varnish-v4`;
 
 expired(headers)
 // false
@@ -52,21 +51,22 @@ delay(600000).then(() => {
 });
 ```
 
-You can also pass headers in as raw text:
+Response headers are parsed into an object by many HTTP modules. `expired` will also accept a parsed header object:
 
 ```js
 const expired = require('expired');
 
-const headers = `
-Access-Control-Allow-Origin: *
-Age: 0
-Cache-Control: public, max-age=300
-Content-Encoding: gzip
-Content-Type: application/json;charset=utf-8
-Date: Fri, 23 Dec 2016 05:50:31 GMT
-Last-Modified: Fri, 23 Dec 2016 05:23:23 GMT
-Vary: Accept-Encoding, User-Agent
-Via: 1.1 varnish-v4`;
+const headers = {
+  'access-control-allow-origin': '*',
+  'age': '0',
+  'cache-control': 'public, max-age=300',
+  'content-encoding': 'gzip',
+  'content-type': 'application/json;charset=utf-8',
+  'date': 'Fri, 23 Dec 2016 05:50:31 GMT',
+  'last-modified': 'Fri, 23 Dec 2016 05:23:23 GMT',
+  'vary': 'Accept-Encoding, User-Agent',
+  'via': '1.1 varnish-v4'
+};
 
 expired(headers)
 // false
