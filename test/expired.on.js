@@ -77,3 +77,20 @@ test('expired.on uses Expires header', t => {
 
 	t.true(isEqual(expired.on(headers), date));
 });
+
+test('expired.on prefers Cache-Control over Expires header', t => {
+	const date = new Date().toUTCString();
+	const age = 150;
+	const maxAge = 300;
+	const headers = {
+		date: date,
+		age: age,
+		'cache-control': `public, max-age=${maxAge}`,
+		expires: date
+	};
+	const expiredOn = addSeconds(date, (maxAge - age));
+
+	tk.freeze(date);
+	t.true(isEqual(expired.on(headers), expiredOn));
+	tk.reset();
+});
