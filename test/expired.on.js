@@ -67,3 +67,13 @@ test('expired.on takes age into account', t => {
 	t.true(isEqual(expired.on(headers), expiredOn));
 	tk.reset();
 });
+
+test('expired.on uses Expires header', t => {
+	const date = new Date().toUTCString();
+	const headers = {
+		date: date,
+		expires: date
+	};
+
+	t.true(isEqual(expired.on(headers), date));
+});
