@@ -14,20 +14,28 @@ expired.on = headers => {
 	// Parse headers if we got a raw string
 	headers = (typeof headers === 'string') ? parse(headers) : headers;
 
-	// Date from headers
-	const originDate = new Date(headers.date);
+	let expiredOn = new Date();
 
-	// Get max age ms
-	let maxAge = headers['cache-control'] && headers['cache-control'].match(/max-age=(\d+)/);
-	maxAge = parseInt(maxAge ? maxAge[1] : 0, 10);
+	// Prefer Cache-Control
+	if (headers['cache-control']) {
+		// Date from headers
+		const originDate = new Date(headers.date);
 
-	// Take current age into account
-	if (headers.age) {
-		maxAge -= headers.age;
+		// Get max age ms
+		let maxAge = headers['cache-control'].match(/max-age=(\d+)/);
+		maxAge = parseInt(maxAge ? maxAge[1] : 0, 10);
+
+		// Take current age into account
+		if (headers.age) {
+			maxAge -= headers.age;
+		}
+
+		// Calculate expirey date
+		expiredOn = addSeconds(originDate, maxAge);
 	}
 
-	// Calculate expirey date
-	return addSeconds(originDate, maxAge);
+	// Return expirey date
+	return expiredOn;
 };
 
 module.exports = expired;
