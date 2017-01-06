@@ -14,13 +14,11 @@ expired.on = headers => {
 	// Parse headers if we got a raw string
 	headers = (typeof headers === 'string') ? parse(headers) : headers;
 
-	let expiredOn = new Date();
+	// Default to Date header
+	let expiredOn = new Date(headers.date);
 
 	// Prefer Cache-Control
 	if (headers['cache-control']) {
-		// Date from headers
-		const originDate = new Date(headers.date);
-
 		// Get max age ms
 		let maxAge = headers['cache-control'].match(/max-age=(\d+)/);
 		maxAge = parseInt(maxAge ? maxAge[1] : 0, 10);
@@ -31,7 +29,7 @@ expired.on = headers => {
 		}
 
 		// Calculate expirey date
-		expiredOn = addSeconds(originDate, maxAge);
+		expiredOn = addSeconds(expiredOn, maxAge);
 
 	// Fall back to Expires if it exists
 	} else if (headers.expires) {
