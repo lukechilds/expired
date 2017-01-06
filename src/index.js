@@ -1,13 +1,13 @@
-const isPast = require('date-fns/is_past');
+const isBefore = require('date-fns/is_before');
 const differenceInMilliseconds = require('date-fns/difference_in_milliseconds');
 const addSeconds = require('date-fns/add_seconds');
 const parse = require('parse-headers');
 
 // Returns boolean for whether or not the cache has expired
-const expired = headers => isPast(expired.on(headers));
+const expired = (headers, currentDate = new Date()) => isBefore(expired.on(headers), currentDate);
 
 // Return ms until cache expires
-expired.in = headers => differenceInMilliseconds(expired.on(headers), new Date());
+expired.in = (headers, currentDate = new Date()) => differenceInMilliseconds(expired.on(headers), currentDate);
 
 // Returns date when cache will expire
 expired.on = headers => {
