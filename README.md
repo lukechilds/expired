@@ -72,6 +72,19 @@ expired(headers)
 // false
 ```
 
+You can make the functions pure by passing in a JavaScript `Date` object to compare to instead of depending on `new Date()`. This isn't necessary for `expired.on` as it doesn't compare dates and is already pure.
+
+The following are all pure functions:
+
+```js
+const headers = `...`;
+const date = new Date();
+
+expired(headers, date)
+expired.in(headers, date)
+expired.on(headers)
+```
+
 ## API
 
 ### expired(headers)
