@@ -51,7 +51,7 @@ delay(600000).then(() => {
 });
 ```
 
-Response headers are parsed into an object by many HTTP modules. `expired` will also accept a parsed header object:
+Many HTTP modules will parse response headers into an object for you. `expired` will also accept headers in this format:
 
 ```js
 const expired = require('expired');
