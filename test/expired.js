@@ -19,7 +19,7 @@ test('expired returns false for valid cache', t => {
 
 test('expired returns true for stale cache', t => {
 	const headers = {
-		date: subSeconds(new Date().toUTCString(), 500),
+		date: subSeconds(new Date(), 500).toUTCString(),
 		age: 0,
 		'cache-control': 'public, max-age=300'
 	};
