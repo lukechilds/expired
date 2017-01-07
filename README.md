@@ -28,24 +28,24 @@ Last-Modified: Fri, 23 Dec 2016 05:23:23 GMT
 Vary: Accept-Encoding, User-Agent
 Via: 1.1 varnish-v4`;
 
-expired(headers)
+expired(headers);
 // false
 
-expired.in(headers)
+expired.in(headers);
 // 500000
 
-expired.on(headers)
+expired.on(headers);
 // Date('2016-12-23T05:55:31.000Z')
 
 delay(600000).then(() => {
 
-  expired(headers)
+  expired(headers);
   // true
 
-  expired.in(headers)
+  expired.in(headers);
   // -100000
 
-  expired.on(headers)
+  expired.on(headers);
   // Date('2016-12-23T05:55:31.000Z')
 
 });
@@ -68,7 +68,7 @@ const headers = {
   'via': '1.1 varnish-v4'
 };
 
-expired(headers)
+expired(headers);
 // false
 ```
 
@@ -82,9 +82,9 @@ The following are all pure functions:
 const headers = `...`;
 const date = new Date();
 
-expired(headers, date)
-expired.in(headers, date)
-expired.on(headers)
+expired(headers, date);
+expired.in(headers, date);
+expired.on(headers);
 ```
 
 ## API
