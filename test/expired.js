@@ -1,5 +1,6 @@
 import test from 'ava';
 import subSeconds from 'date-fns/sub_seconds';
+import addSeconds from 'date-fns/add_seconds';
 import expired from '../';
 
 test('expired is a function', t => {
@@ -24,4 +25,16 @@ test('expired returns true for stale cache', t => {
 	};
 
 	t.true(expired(headers));
+});
+
+test('expired accepts currentDate argument', t => {
+	const date = new Date();
+	const headers = {
+		date: date.toUTCString(),
+		age: 0,
+		'cache-control': 'public, max-age=300'
+	};
+
+	t.false(expired(headers, date));
+	t.true(expired(headers, addSeconds(date, 500)));
 });

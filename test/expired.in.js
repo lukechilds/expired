@@ -51,3 +51,15 @@ test('expired.in returns negative ms for stale cache', t => {
 	t.is(expired.in(headers), expiredIn);
 	tk.reset();
 });
+
+test('expired.in accepts currentDate argument', t => {
+	const date = new Date(new Date().toUTCString());
+	const headers = {
+		date: date.toUTCString(),
+		age: 0,
+		'cache-control': 'public, max-age=300'
+	};
+
+	t.is(expired.in(headers, date), 300000);
+	t.is(expired.in(headers, addSeconds(date, 500)), -200000);
+});
