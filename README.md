@@ -87,17 +87,49 @@ expired.on(headers)
 
 ## API
 
-### expired(headers)
+### expired(headers, [date])
 
 Returns a boolean relating to whether the resource has expired or not. `true` means it's expired, `false` means it's fresh.
 
-### expired.in(headers)
+#### headers
+
+Type: `string`, `object`<br>
+
+String or object containing HTTP headers.
+
+#### date
+
+Type: `Date`<br>
+Default: `new Date()`
+
+Optional `Date` object to compare against.
+
+### expired.in(headers, [date])
 
 Returns the amount of milliseconds from the current date until the resource will expire. If the resource has already expired it will return a negative integer.
+
+#### headers
+
+Type: `string`, `object`<br>
+
+String or object containing HTTP headers.
+
+#### date
+
+Type: `Date`<br>
+Default: `new Date()`
+
+Optional `Date` object to compare against.
 
 ### expired.on(headers)
 
 Returns a JavaScript `Date` object for the date the resource will expire.
+
+#### headers
+
+Type: `string`, `object`<br>
+
+String or object containing HTTP headers.
 
 ## License
 
