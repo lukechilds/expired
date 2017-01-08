@@ -39,3 +39,16 @@ test('headers can be passed in as a string', t => {
 	t.true(isEqual(expired.on(headers), date));
 	tk.reset();
 });
+
+test('headers can contain status code', t => {
+	const date = new Date().toUTCString();
+	const headers = `
+		HTTP/1.1 200 OK
+		Date: ${date}
+		Age: 0
+		Cache-Control public, max-age=0`;
+
+	tk.freeze(date);
+	t.true(isEqual(expired.on(headers), date));
+	tk.reset();
+});
