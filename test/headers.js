@@ -8,6 +8,13 @@ test('throw error if header argument is missing', t => {
 	t.is(err.message, 'Headers argument is missing');
 });
 
+test('throw error if Date header is missing', t => {
+	const headers = {};
+
+	const err = t.throws(() => expired(headers));
+	t.is(err.message, 'Date header is missing');
+});
+
 test('headers can be passed in as an object', t => {
 	const date = new Date().toUTCString();
 	const headers = {
