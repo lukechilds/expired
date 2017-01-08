@@ -18,6 +18,7 @@ npm install --save expired
 const expired = require('expired');
 
 const headers = `
+  HTTP/1.1 200 OK
   Age: 0
   Cache-Control: public, max-age=300
   Content-Encoding: gzip
