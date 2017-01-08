@@ -13,7 +13,7 @@ expired.in = (headers, date = new Date()) => differenceInMilliseconds(expired.on
 expired.on = headers => {
 	// Check we have headers
 	if (!headers) {
-		throw new Error('Headers argument is required');
+		throw new Error('Headers argument is missing');
 	}
 
 	// Parse headers if we got a raw string
