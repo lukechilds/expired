@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/lukechilds/expired.svg?branch=master)](https://travis-ci.org/lukechilds/expired) [![Coverage Status](https://coveralls.io/repos/github/lukechilds/expired/badge.svg?branch=master)](https://coveralls.io/github/lukechilds/expired?branch=master)
 
-`expired` accepts HTTP headers as an argument and will return information on when the resource will expire. `Cache-Control` and `Expires` headers are supported, if both exist `Cache-Control` takes priority.
+`expired` accepts HTTP headers as an argument and will return information on when the resource will expire. `Cache-Control` and `Expires` headers are supported, if both exist `Cache-Control` takes priority ([Why?](http://stackoverflow.com/a/7549558/5625059)).
 
 ## Install
 
