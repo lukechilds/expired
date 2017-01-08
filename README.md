@@ -18,15 +18,12 @@ npm install --save expired
 const expired = require('expired');
 
 const headers = `
-Access-Control-Allow-Origin: *
 Age: 0
 Cache-Control: public, max-age=300
 Content-Encoding: gzip
 Content-Type: application/json;charset=utf-8
 Date: Fri, 23 Dec 2016 05:50:31 GMT
-Last-Modified: Fri, 23 Dec 2016 05:23:23 GMT
-Vary: Accept-Encoding, User-Agent
-Via: 1.1 varnish-v4`;
+Last-Modified: Fri, 23 Dec 2016 05:23:23 GMT`;
 
 expired(headers);
 // false
@@ -57,15 +54,12 @@ Many HTTP modules will parse response headers into an object for you. `expired` 
 const expired = require('expired');
 
 const headers = {
-  'access-control-allow-origin': '*',
   'age': '0',
   'cache-control': 'public, max-age=300',
   'content-encoding': 'gzip',
   'content-type': 'application/json;charset=utf-8',
   'date': 'Fri, 23 Dec 2016 05:50:31 GMT',
-  'last-modified': 'Fri, 23 Dec 2016 05:23:23 GMT',
-  'vary': 'Accept-Encoding, User-Agent',
-  'via': '1.1 varnish-v4'
+  'last-modified': 'Fri, 23 Dec 2016 05:23:23 GMT'
 };
 
 expired(headers);
