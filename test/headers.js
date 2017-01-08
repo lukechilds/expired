@@ -3,6 +3,11 @@ import tk from 'timekeeper';
 import isEqual from 'date-fns/is_equal';
 import expired from '../';
 
+test('throw error if header argument is missing', t => {
+	const err = t.throws(() => expired());
+	t.is(err.message, 'Headers argument is missing');
+});
+
 test('headers can be passed in as an object', t => {
 	const date = new Date().toUTCString();
 	const headers = {
