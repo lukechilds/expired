@@ -19,6 +19,11 @@ expired.on = headers => {
 	// Parse headers if we got a raw string
 	headers = (typeof headers === 'string') ? parse(headers) : headers;
 
+	// Check we have date header
+	if (!headers.date) {
+		throw new Error('Date header is missing');
+	}
+
 	// Default to Date header
 	let expiredOn = new Date(headers.date);
 
