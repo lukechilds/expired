@@ -11,6 +11,11 @@ expired.in = (headers, date = new Date()) => differenceInMilliseconds(expired.on
 
 // Returns date when cache will expire
 expired.on = headers => {
+	// Check we have headers
+	if (!headers) {
+		throw new Error('Headers argument is required');
+	}
+
 	// Parse headers if we got a raw string
 	headers = (typeof headers === 'string') ? parse(headers) : headers;
 
