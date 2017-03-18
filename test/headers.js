@@ -18,7 +18,7 @@ test('throw error if Date header is missing', t => {
 test('headers can be passed in as an object', t => {
 	const date = new Date().toUTCString();
 	const headers = {
-		date: date,
+		date,
 		age: 0,
 		'cache-control': `public, max-age=0`
 	};
