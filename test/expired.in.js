@@ -11,7 +11,7 @@ test('expired.in returns positive ms for valid cache', t => {
 	const date = new Date().toUTCString();
 	const maxAge = 300;
 	const headers = {
-		date: date,
+		date,
 		age: 0,
 		'cache-control': `public, max-age=${maxAge}`
 	};
@@ -25,7 +25,7 @@ test('expired.in returns positive ms for valid cache', t => {
 test('expired.in returns zero ms for instantly stale cache', t => {
 	const date = new Date().toUTCString();
 	const headers = {
-		date: date,
+		date,
 		age: 0,
 		'cache-control': `public, max-age=0`
 	};

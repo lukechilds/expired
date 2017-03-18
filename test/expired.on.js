@@ -11,7 +11,7 @@ test('expired.on returns correct expirey date for valid cache', t => {
 	const date = new Date().toUTCString();
 	const maxAge = 300;
 	const headers = {
-		date: date,
+		date,
 		age: 0,
 		'cache-control': `public, max-age=${maxAge}`
 	};
@@ -23,7 +23,7 @@ test('expired.on returns correct expirey date for valid cache', t => {
 test('expired.on returns correct expirey date for instantly stale cache', t => {
 	const date = new Date().toUTCString();
 	const headers = {
-		date: date,
+		date,
 		age: 0,
 		'cache-control': `public, max-age=0`
 	};
@@ -50,8 +50,8 @@ test('expired.on takes age into account', t => {
 	const age = 150;
 	const maxAge = 300;
 	const headers = {
-		date: date,
-		age: age,
+		date,
+		age,
 		'cache-control': `public, max-age=${maxAge}`
 	};
 	const expiredOn = addSeconds(date, (maxAge - age));
@@ -74,8 +74,8 @@ test('expired.on prefers Cache-Control over Expires header', t => {
 	const age = 150;
 	const maxAge = 300;
 	const headers = {
-		date: date,
-		age: age,
+		date,
+		age,
 		'cache-control': `public, max-age=${maxAge}`,
 		expires: date
 	};
