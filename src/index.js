@@ -1,3 +1,5 @@
+'use strict';
+
 const isBefore = require('date-fns/is_before');
 const differenceInMilliseconds = require('date-fns/difference_in_milliseconds');
 const addSeconds = require('date-fns/add_seconds');
