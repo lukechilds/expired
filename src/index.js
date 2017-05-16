@@ -40,7 +40,7 @@ expired.on = headers => {
 			maxAge -= headers.age;
 		}
 
-		// Calculate expirey date
+		// Calculate expiry date
 		expiredOn = addSeconds(expiredOn, maxAge);
 
 	// Fall back to Expires if it exists
@@ -48,7 +48,7 @@ expired.on = headers => {
 		expiredOn = new Date(headers.expires);
 	}
 
-	// Return expirey date
+	// Return expiry date
 	return expiredOn;
 };
 
