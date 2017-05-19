@@ -36,7 +36,7 @@
   "devDependencies": {
     "ava": "^0.19.0",
     "coveralls": "^2.11.15",
-    "date-fns": "^1.28.3",
+    "date-fns": "^1.28.5",
     "nyc": "^10.0.0",
     "timekeeper": "^1.0.0",
     "xo": "^0.19.0"
