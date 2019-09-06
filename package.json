@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/lukechilds/expired",
   "dependencies": {
-    "date-fns": "1.28.5",
+    "date-fns": "2.1.0",
     "parse-headers": "2.0.1"
   },
   "devDependencies": {
